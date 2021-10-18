@@ -1,5 +1,5 @@
 <MARIO>
-MarioIdle : 204 * 290
+MarioIdle : 210 * 290
 MarioRun : 223 * 275
 
 <BOSS>
