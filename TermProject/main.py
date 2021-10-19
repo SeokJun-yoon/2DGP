@@ -1,6 +1,8 @@
 from pico2d import *
 import random
 from player import Mario
+from ground import Ground
+from background import Background
 X,Y=512*2,160*5
 running = True
 
@@ -16,10 +18,11 @@ def handle_events():
         mario.handle_event(event)
 
 open_canvas(1000,800)
-Grass = load_image('res/grass.png')
-Background = load_image('res/Background.png')
+# Ground = load_image('res/ground.png')
+# Background = load_image('res/Background.png')
 mario = Mario()
-
+ground = Ground()
+background = Background()
 while running:
     handle_events()
 
@@ -28,10 +31,9 @@ while running:
 
     # Game drawing
     clear_canvas()
-    Grass.draw(75,75,150,150)
-    Background.draw(X/2,475,X,650)
+    ground.draw()
+    background.draw()
     mario.draw()
-
 
     update_canvas()
 

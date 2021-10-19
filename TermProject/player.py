@@ -24,9 +24,9 @@ class Mario:
 
     def draw(self):
         # left, bottom, img.넓이 , 높이, x위치, y위치 , x사이즈, y사이즈
-        if self.state is "Idle":
+        if self.state == "Idle":
             self.Idle_image.clip_draw(self.frame * 210, self.index * 290, 210, 290,self.x,self.y,100,140)
-        elif self.state is "Run":
+        elif self.state == "Run":
             self.Run_image.clip_draw(self.frame*223,self.index*275,223,275,self.x,self.y,100,140)
 
     def handle_event(self, e):
