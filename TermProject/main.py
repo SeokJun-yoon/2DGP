@@ -1,4 +1,6 @@
 from pico2d import *
+import random
+running = True
 
 frame = 0
 index = 0
@@ -6,6 +8,39 @@ dir = 0  # -1 left, +1 right
 
 x=50
 y=200
+
+class Mario:
+    def __init__(self): # 생성자
+        self.x = 50
+        self.y = 200
+        self.frame=0
+        self.index=0
+        self.dir=0 # -1 left, +1 right
+
+        self.state="Idle"
+        self.Idle_image = load_image('res/MarioIdle.png')
+        self.Run_image = load_image('res/MarioRun.png')
+
+    def Run(self):
+        pass
+
+    def Jump(self):
+        pass
+
+    def change_state(self):
+        pass
+
+    def draw(self):
+        if self.state is "Idle":
+            self.Idle_image.clip_draw(self.frame * 210, self.index * 290, 210, 290,self.x,self.y,100,140)
+        elif self.state is "Run":
+            self.Run_image.clip_draw(self.frame*223,self.index*275,223,275,self.x,self.y,100,120)
+
+    def handle_event(self):
+        pass
+
+    def update(self):
+        pass
 open_canvas(1000,800)
 def handle_events():
     global running
@@ -30,14 +65,12 @@ def handle_events():
 
 
 
-MarioIdle = load_image('res/MarioIdle.png')
-MarioRun = load_image('res/MarioRun.png')
+
 Grass = load_image('res/grass.png')
-running = True
 
 while running:
     clear_canvas()
-    Grass.draw(0,50,2000,200)
+    Grass.draw(50,50,150,150)
     # left, bottom, img.넓이 , 높이, x위치, y위치 , x사이즈, y사이즈
     MarioIdle.clip_draw(frame * 210, index * 290, 210, 290,x,y,100,140)
     update_canvas()
