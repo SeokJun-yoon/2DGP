@@ -41,6 +41,10 @@ class Mario:
                     self.dir[0] = -1
                     self.state = "Run"
                     self.index=1
+                elif e.key == SDLK_UP:
+                    self.speed=1
+                    self.dir[1] = 1
+                    self.state="Idle"  # jump로 바꿔야함
             elif e.type == SDL_KEYUP:
                 if e.key == SDLK_RIGHT:
                     self.speed=0
@@ -48,8 +52,13 @@ class Mario:
                 elif e.key == SDLK_LEFT:
                     self.speed=0
                     self.state = "Idle"
+                elif e.key == SDLK_UP:
+                    self.speed=0
+                    self.dir[1]=0
+                    self.state = "Idle"  # jump로 바꿔야 함
 
     def update(self):
         self.frame= (self.frame+1) % 3   # 프레임
         # self.handle_event()
         self.x+=self.dir[0]*self.speed*20
+        self.y+=self.dir[1]*self.speed*20
