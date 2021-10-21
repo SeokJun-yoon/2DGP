@@ -1,10 +1,25 @@
 from pico2d import *
 import random
+import title_state
+import game_framework
+
 from player import Mario
 from ground import Ground
 from background import Background
 X,Y=512*2,160*5
 running = True
+
+def enter():
+    global mario,ground,background
+    mario = Mario()
+    ground = Ground()
+    background = Background()
+
+def exit():
+    global mario, ground, background
+    del(mario)
+    del(ground)
+    del(background)
 
 def handle_events():
     global running
@@ -14,30 +29,24 @@ def handle_events():
             running = False
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_ESCAPE:
-                running = False
+                game_framework.change_state(title_state)
         mario.handle_event(event)
 
-open_canvas(1000,800)
-# Ground = load_image('res/ground.png')
-# Background = load_image('res/Background.png')
-mario = Mario()
-ground = Ground()
-background = Background()
-while running:
-    handle_events()
-
-    # Game logic
+def update():
     mario.update()
+    delay(0.05)
 
-    # Game drawing
+def draw():
     clear_canvas()
     ground.draw()
     background.draw()
     mario.draw()
-
     update_canvas()
 
-    delay(0.1)
 
+# Ground = load_image('res/ground.png')
+# Background = load_image('res/Background.png')
+# mario = Mario()
+# ground = Ground()
+# background = Background()
 
-close_canvas()
